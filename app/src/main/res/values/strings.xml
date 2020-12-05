@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CityApp</string>
+    <string name="get_random_dog_image">Get Random Dog Image</string>
 </resources>
