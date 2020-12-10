@@ -13,10 +13,16 @@ import android.widget.TextView;
 
 
 public class GetReport extends Activity {
-    private static final String NAMESPACE = "http://tempuri.org/"; // com.service.ServiceImpl
+    /*private static final String NAMESPACE = "http://tempuri.org/"; // com.service.ServiceImpl
     private static final String URL = "http://commodities.karvy.com/services/NetPositionReport.asmx";
     private static final String METHOD_NAME = "NetPositionReport";
     private static final String SOAP_ACTION = "http://tempuri.org/NetPositionReport";
+    private String webResponse = "";*/
+
+    private static final String NAMESPACE = "http://akozlowski/soap/";
+    private static final String METHOD_NAME1 = "getImageResponse";
+    private static final String URL = "http://192.168.1.17:8080/getImageResponse";
+    private static final String SOAP_ACTION = "getImageResponse";
     private String webResponse = "";
     private Handler handler = new Handler();
     private Thread thread;
@@ -43,7 +49,7 @@ public class GetReport extends Activity {
             public void run() {
                 try {
                     Log.d("Req value0R", "Starting...");
-                    SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+                    SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME1);
                     // simple object access protocol
                     request.addProperty("ClientCode", aa);
                     request.addProperty("key", "Om$@!#@M^#R");
