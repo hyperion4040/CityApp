@@ -1,30 +1,37 @@
 package com.example.cityapp
 
 import android.os.Bundle
-import android.os.StrictMode
-import android.widget.Button
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
-import org.ksoap2.SoapEnvelope
-import org.ksoap2.serialization.SoapObject
-import org.ksoap2.serialization.SoapSerializationEnvelope
-import org.ksoap2.transport.HttpTransportSE
-import org.xmlpull.v1.XmlPullParserException
 
 
 class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
 
-    private val NAMESPACE = "http://akozlowski/soap/"
+    /*private val NAMESPACE = "http://akozlowski/soap/"
     private val METHOD_NAME1 = "getImageResponse"
     private val URL = "http://192.168.1.17:8080/getImageResponse"
     private val SOAP_ACTION = "http://akozlowski/soap/getImageResponse"
-    private var webResponse = ""
+    private var webResponse = ""*/
+    /*private val NAMESPACE: String? = "http://www.w3schools.com/webservices/"
+    private val MAIN_REQUEST_URL = "https://www.w3schools.com/xml/tempconvert.asmx"
+    private val SOAP_ACTION = "http://www.w3schools.com/webservices/FahrenheitToCelsius"
+    private var METHOD_NAME = "FahrenheitToCelsius"
+    private var webResponse = ""*/
+
+    private val SOAP_ACTION = "http://www.w3schools.com/webservices/CelsiusToFahrenheit"
+    private val METHOD_NAME = "CelsiusToFahrenheit"
+    private val NAMESPACE = "http://www.w3schools.com/webservices/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val myRequest = myAsyncTask()
+        myRequest.execute()
+    }
+
+
+   /* override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val button = findViewById<Button>(R.id.btn_get_image)
@@ -33,36 +40,36 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         StrictMode.setThreadPolicy(policy)
 
         button.setOnClickListener {
-            /*val y1 = findViewById<EditText>(R.id.y1).text.toString().toInt()
+            *//*val y1 = findViewById<EditText>(R.id.y1).text.toString().toInt()
             val x1 = findViewById<EditText>(R.id.x1).text.toString().toInt()
             val y2 = findViewById<EditText>(R.id.y2).text.toString().toInt()
             val x2 = findViewById<EditText>(R.id.x2).text.toString().toInt()
-            val url = "/getImage?y1=$y1&x1=$x1&y2=$y2&x2=$x2"*/
+            val url = "/getImage?y1=$y1&x1=$x1&y2=$y2&x2=$x2"*//*
             launch(Dispatchers.Main) {
                 //        setContentView(R.layout.fragment_item_detail);
 //        textView1 = (TextView) findViewById(R.id.item_detail);
-                /*val title = intent.extras!!.getString("ClientCode")
+                *//*val title = intent.extras!!.getString("ClientCode")
 
                 println("Data is $title")
                 val getReport = GetReport()
-                getReport.startWebAccess(title)*/
+                getReport.startWebAccess(title)*//*
                 try {
-                    val request = SoapObject(NAMESPACE, METHOD_NAME1)
+                    val request = SoapObject(NAMESPACE, METHOD_NAME)
 
                     val envelope = SoapSerializationEnvelope(
-                            SoapEnvelope.VER11
+                        SoapEnvelope.VER11
                     )
                     envelope.dotNet = true
                     envelope.setOutputSoapObject(request)
 
                     val androidHttpTransport = HttpTransportSE(
-                            URL
+                        MAIN_REQUEST_URL
                     )
                     androidHttpTransport.debug = true
                     androidHttpTransport.call(SOAP_ACTION, envelope)
                     val objectResult = envelope.bodyIn as SoapObject
                     webResponse = objectResult.toString()
-                }catch(xe: XmlPullParserException){
+                }catch (xe: XmlPullParserException){
                     xe.printStackTrace()
 
                 }catch (e: Exception) {
@@ -70,11 +77,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
                 }
 
 
-               /* RetrofitImage.getBitmapFrom(url){
+               *//* RetrofitImage.getBitmapFrom(url){
                     cityImage.load(it)
-                }*/
+                }*//*
 
             }
         }
-    }
+    }*/
 }
