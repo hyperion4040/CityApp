@@ -13,7 +13,10 @@ import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
 
 
-class myAsyncTask : AsyncTask<Void?, Void?, Void?>() {
+class myAsyncTask(val nameS: String) : AsyncTask<Void?, Void?, Void?>() {
+
+
+
 
 //    private val SOAP_ACTION = "http://www.w3schools.com/webservices/CelsiusToFahrenheit"
     /*private val SOAP_ACTION = "https://www.w3schools.com/xml/CelsiusToFahrenheit"
@@ -41,7 +44,7 @@ class myAsyncTask : AsyncTask<Void?, Void?, Void?>() {
         property2.setName("name")
         property2.setNamespace(NAMESPACE)
         property2.setType(PropertyInfo.OBJECT_TYPE)
-        property2.value = "Poland"
+        property2.value = nameS
         request.addProperty(property2)
         Log.i("request", "request:" + request);
         val envelope = SoapSerializationEnvelope(SoapEnvelope.VER11)

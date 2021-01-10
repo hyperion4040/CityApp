@@ -1,6 +1,8 @@
 package com.example.cityapp
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
@@ -26,8 +28,14 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val myRequest = myAsyncTask()
-        myRequest.execute()
+        val button = findViewById<Button>(R.id.btn_get_image)
+        button.setOnClickListener {
+            val nazwa =  findViewById<EditText>(R.id.nazwa).text.toString()
+            val myRequest = myAsyncTask(nazwa)
+
+            myRequest.execute()
+        }
+
     }
 
 
