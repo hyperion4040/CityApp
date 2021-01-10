@@ -1,7 +1,9 @@
 package com.example.cityapp
 
+import android.app.Activity
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
+import android.util.Base64
 import android.util.Log
 import android.widget.ImageView
 import coil.api.load
@@ -13,12 +15,12 @@ import org.ksoap2.serialization.SoapSerializationEnvelope
 import org.ksoap2.transport.HttpResponseException
 import org.ksoap2.transport.HttpTransportSE
 import org.xmlpull.v1.XmlPullParserException
-import java.io.ByteArrayInputStream
-import java.io.File
 import java.io.IOException
+import java.lang.ref.WeakReference
 
 
-class myAsyncTask(val activity: MainActivity, val x1: Int, val x2: Int, val y1: Int, val y2: Int) : AsyncTask<Any?, Void?, Any?>() {
+class myAsyncTask(val imageView: WeakReference<ImageView>, val x1: Int, val x2: Int, val y1: Int, val y2: Int) : AsyncTask<Any?, Void?, Any?>() {
+
 
 
 
@@ -83,23 +85,33 @@ private val SOAP_ACTION = "http://spring.io/guides/gs-producing-web-service/getI
             Log.e("XMLLOG", e.message.toString())
             e.printStackTrace()
         } //send request
-        var result: ByteArray? = null
+        var result: SoapObject = SoapObject()
         try {
-            result = envelope.response as ByteArray
+
+
+            result = envelope.bodyIn as SoapObject
+//            result = envelope.response as ByteArray
             Log.i("RESPONSE", result.toString()) // see output in the console
         } catch (e: SoapFault) {
             // TODO Auto-generated catch block
             Log.e("SOAPLOG", e.message.toString())
             e.printStackTrace()
         }
+        if (result != null) {
+           val encodedImage = result.getProperty("image").toString()
+            val decodedString: ByteArray = Base64.decode(encodedImage, Base64.DEFAULT)
+            return decodedString
+        }
         return result
     }
 
     override fun onPostExecute(result: Any?) {
+
         val imageData: ByteArray = result as ByteArray
         val bmp = BitmapFactory.decodeByteArray(imageData, 0, imageData.size)
-        val cityImage = activity.findViewById<ImageView>(R.id.iv_city_image)
-        cityImage.load(bmp)
+        val cityImage = imageView.get()?.setImageBitmap(bmp)
+//        val cityImage = activity.get()?.findViewById<ImageView>(R.id.iv_city_image)
+//        cityImage?.load(bmp)
     }
 
     fun createProperty(propertyName: String, propertyValue: Int): PropertyInfo {
