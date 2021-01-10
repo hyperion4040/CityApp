@@ -19,7 +19,7 @@ import java.io.IOException
 import java.lang.ref.WeakReference
 
 
-class myAsyncTask(val imageView: WeakReference<ImageView>, val x1: Int, val x2: Int, val y1: Int, val y2: Int) : AsyncTask<Any?, Void?, Any?>() {
+class myAsyncTask(val imageView: WeakReference<ImageView>, val y1: Int, val x1: Int, val y2: Int, val x2: Int) : AsyncTask<Any?, Void?, Any?>() {
 
 
 
@@ -55,10 +55,14 @@ private val SOAP_ACTION = "http://spring.io/guides/gs-producing-web-service/getI
         property2.setType(PropertyInfo.OBJECT_TYPE)
         property2.value = nameS
         request.addProperty(property2)*/
-        request.addProperty(createProperty("y1", y1))
+       /* request.addProperty(createProperty("y1", y1))
         request.addProperty(createProperty("x1", x1))
         request.addProperty(createProperty("y2", y2))
-        request.addProperty(createProperty("x2", x2))
+        request.addProperty(createProperty("x2", x2))*/
+        request.addProperty("y1", y1)
+        request.addProperty("x1", x1)
+        request.addProperty("y2", y2)
+        request.addProperty("x2", x2)
 
 
 
@@ -90,6 +94,7 @@ private val SOAP_ACTION = "http://spring.io/guides/gs-producing-web-service/getI
 
 
             result = envelope.bodyIn as SoapObject
+//                result = envelope.response as SoapObject
 //            result = envelope.response as ByteArray
             Log.i("RESPONSE", result.toString()) // see output in the console
         } catch (e: SoapFault) {
@@ -98,7 +103,7 @@ private val SOAP_ACTION = "http://spring.io/guides/gs-producing-web-service/getI
             e.printStackTrace()
         }
         if (result != null) {
-           val encodedImage = result.getProperty("image").toString()
+    val encodedImage = result.getProperty("image").toString()
             val decodedString: ByteArray = Base64.decode(encodedImage, Base64.DEFAULT)
             return decodedString
         }
