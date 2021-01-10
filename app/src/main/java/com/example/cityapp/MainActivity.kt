@@ -1,8 +1,10 @@
 package com.example.cityapp
 
+import android.R.attr.data
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
@@ -30,25 +32,31 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         setContentView(R.layout.activity_main)
         val button = findViewById<Button>(R.id.btn_get_image)
         button.setOnClickListener {
-            val nazwa =  findViewById<EditText>(R.id.nazwa).text.toString()
-            val myRequest = myAsyncTask(nazwa)
+            val y1 = findViewById<EditText>(R.id.y1).text.toString().toInt()
+            val x1 = findViewById<EditText>(R.id.x1).text.toString().toInt()
+            val y2 = findViewById<EditText>(R.id.y2).text.toString().toInt()
+            val x2 = findViewById<EditText>(R.id.x2).text.toString().toInt()
+            val myRequest = myAsyncTask(MainActivity(), x1, x2, y1, y2)
 
             myRequest.execute()
+            /*  val bis = ByteArrayInputStream(execute)
+              val bImage2: BufferedImage = ImageIO.read(bis)
+              ImageIO.write(bImage2, "jpg", File("output.jpg"))*/
         }
 
     }
 
 
-   /* override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val button = findViewById<Button>(R.id.btn_get_image)
-        val cityImage = findViewById<ImageView>(R.id.iv_city_image)
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
+    /* override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_main)
+         val button = findViewById<Button>(R.id.btn_get_image)
+         val cityImage = findViewById<ImageView>(R.id.iv_city_image)
+         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+         StrictMode.setThreadPolicy(policy)
 
-        button.setOnClickListener {
-            *//*val y1 = findViewById<EditText>(R.id.y1).text.toString().toInt()
+         button.setOnClickListener {
+             *//*val y1 = findViewById<EditText>(R.id.y1).text.toString().toInt()
             val x1 = findViewById<EditText>(R.id.x1).text.toString().toInt()
             val y2 = findViewById<EditText>(R.id.y2).text.toString().toInt()
             val x2 = findViewById<EditText>(R.id.x2).text.toString().toInt()
