@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
             val y2 = findViewById<EditText>(R.id.y2).text.toString().toInt()
             val x2 = findViewById<EditText>(R.id.x2).text.toString().toInt()*/
 //            val myRequest = myAsyncTask( WeakReference<Activity>(MainActivity()), x1, x2, y1, y2)
-            val myRequest = myAsyncTask( WeakReference<ImageView>(findViewById<ImageView>(R.id.iv_city_image)), 0.0, 0, 400.55, 200)
+            val myRequest = myAsyncTask( WeakReference<ImageView>(findViewById<ImageView>(R.id.iv_city_image)), 35.5, 139.6, 35.8, 139.9)
 
             myRequest.execute()
 
