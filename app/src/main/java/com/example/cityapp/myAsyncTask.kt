@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.ImageView
 import org.ksoap2.SoapEnvelope
 import org.ksoap2.SoapFault
+import org.ksoap2.serialization.MarshalFloat
 import org.ksoap2.serialization.PropertyInfo
 import org.ksoap2.serialization.SoapObject
 import org.ksoap2.serialization.SoapSerializationEnvelope
@@ -17,7 +18,7 @@ import java.io.IOException
 import java.lang.ref.WeakReference
 
 
-class myAsyncTask(val imageView: WeakReference<ImageView>, val y1: Int, val x1: Int, val y2: Int, val x2: Int) : AsyncTask<Any?, Void?, Any?>() {
+class myAsyncTask(val imageView: WeakReference<ImageView>, val y1: Number, val x1: Number, val y2: Number, val x2: Number) : AsyncTask<Any?, Void?, Any?>() {
 
     private val SOAP_ACTION = "http://spring.io/guides/gs-producing-web-service/getImageRequest"
     private val METHOD_NAME = "getImageRequest"
@@ -27,15 +28,17 @@ class myAsyncTask(val imageView: WeakReference<ImageView>, val y1: Int, val x1: 
 
         val request = SoapObject(NAMESPACE, METHOD_NAME)
 
+
         request.addProperty("y1", y1)
         request.addProperty("x1", x1)
         request.addProperty("y2", y2)
-        request.addProperty("x2", x2)
+        request.addProperty("x2",  x2)
 
         Log.i("request", "request:" + request);
         val envelope = SoapSerializationEnvelope(SoapEnvelope.VER11)
         envelope.implicitTypes = true
         envelope.setOutputSoapObject(request)
+        MarshalFloat().register(envelope)
         val httpTransport = HttpTransportSE(URL)
         httpTransport.debug = true
         try {
