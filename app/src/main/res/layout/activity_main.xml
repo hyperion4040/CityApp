@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,9 +11,31 @@
     <ImageView
         android:id="@+id/iv_city_image"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:layout_weight="1"
+        android:layout_gravity="left"
+        android:paddingTop="15dp"/>
+
+    <ImageView
+        android:id="@+id/iv_city_minimap"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:layout_gravity="left"
+        android:paddingTop="15dp" />
+
+    <!--ImageView
+        android:id="@+id/iv_city_image"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
-
+    <ImageView
+        android:id="@+id/iv_city_minimap"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>-->
     <Button
         android:id="@+id/btn_get_image"
         android:layout_width="wrap_content"
@@ -52,5 +75,4 @@
         android:hint="35.54"
         android:inputType="number"
         android:id="@+id/y2" />
-
 </LinearLayout>

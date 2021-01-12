@@ -18,7 +18,7 @@ import java.io.IOException
 import java.lang.ref.WeakReference
 
 
-class myAsyncTask(val imageView: WeakReference<ImageView>, val y1: Number, val x1: Number, val y2: Number, val x2: Number) : AsyncTask<Any?, Void?, Any?>() {
+class myAsyncTask(val imageView: WeakReference<ImageView>, val minimapView: WeakReference<ImageView>,  val y1: Number, val x1: Number, val y2: Number, val x2: Number) : AsyncTask<Any?, Void?, Any?>() {
 
     private val SOAP_ACTION = "http://spring.io/guides/gs-producing-web-service/getImageRequest"
     private val METHOD_NAME = "getImageRequest"
@@ -67,14 +67,24 @@ class myAsyncTask(val imageView: WeakReference<ImageView>, val y1: Number, val x
         }
         val encodedImage = result.getProperty("image").toString()
         val decodedString: ByteArray = Base64.decode(encodedImage, Base64.DEFAULT)
-        return decodedString
+        val minimap = result.getProperty("minimap").toString()
+        val minimapString: ByteArray = Base64.decode(minimap, Base64.DEFAULT)
+        val list = ArrayList<ByteArray>()
+        list.add(decodedString)
+        list.add(minimapString)
+        return list
     }
 
     override fun onPostExecute(result: Any?) {
-
-        val imageData: ByteArray = result as ByteArray
+        val maps: List<ByteArray> = result as List<ByteArray>
+        val imageData: ByteArray = maps[0] as ByteArray
         val bmp = BitmapFactory.decodeByteArray(imageData, 0, imageData.size)
-        imageView.get()?.setImageBitmap(bmp)
+
+        val minimapData: ByteArray = maps[1] as ByteArray
+        val bmpMinimap = BitmapFactory.decodeByteArray(minimapData, 0, minimapData.size)
+        imageView.get()?.setImageBitmap(bmpMinimap)
+        minimapView.get()?.setImageBitmap(bmp)
+
     }
 
     fun createProperty(propertyName: String, propertyValue: Int): PropertyInfo {
