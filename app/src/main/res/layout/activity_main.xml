@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/iv_city_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:contentDescription="@string/app_name"
         android:layout_weight="1"
         android:layout_gravity="left"
@@ -21,7 +21,7 @@
         android:id="@+id/iv_city_minimap"
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:contentDescription="@string/app_name"
         android:layout_gravity="left"
         android:paddingTop="15dp" />
@@ -49,7 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:hint="139.61"
-        android:inputType="number"
+        android:inputType="numberDecimal"
+        android:digits="0123456789."
         android:id="@+id/x1" />
 
     <EditText
@@ -57,7 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:hint="35.82"
-        android:inputType="number"
+        android:inputType="numberDecimal"
+        android:digits="0123456789."
         android:id="@+id/y1" />
 
     <EditText
@@ -65,7 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:hint="139.92"
-        android:inputType="number"
+        android:inputType="numberDecimal"
+        android:digits="0123456789."
         android:id="@+id/x2" />
 
     <EditText
@@ -73,6 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:hint="35.54"
-        android:inputType="number"
+        android:inputType="numberDecimal"
+        android:digits="0123456789."
         android:id="@+id/y2" />
 </LinearLayout>

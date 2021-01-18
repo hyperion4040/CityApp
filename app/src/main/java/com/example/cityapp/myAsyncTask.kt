@@ -1,5 +1,6 @@
 package com.example.cityapp
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import android.util.Base64
@@ -82,8 +83,8 @@ class myAsyncTask(val imageView: WeakReference<ImageView>, val minimapView: Weak
 
         val minimapData: ByteArray = maps[1] as ByteArray
         val bmpMinimap = BitmapFactory.decodeByteArray(minimapData, 0, minimapData.size)
-        imageView.get()?.setImageBitmap(bmpMinimap)
-        minimapView.get()?.setImageBitmap(bmp)
+        imageView.get()?.setImageBitmap(Bitmap.createScaledBitmap(bmpMinimap,150,150,true))
+        minimapView.get()?.setImageBitmap(Bitmap.createScaledBitmap(bmp,150,150,true))
 
     }
 
