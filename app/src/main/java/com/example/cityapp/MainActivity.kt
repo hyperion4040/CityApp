@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
 
 
         findViewById<View>(R.id.iv_city_image).setOnTouchListener(handleTouch);
-        val myRequest = myAsyncTask(WeakReference(findViewById(R.id.iv_city_image)), WeakReference(findViewById(R.id.iv_city_minimap)),
-                35.54, 139.61, 35.62, 139.92)
+        val myRequest = simpleAsyncTask(WeakReference(findViewById(R.id.iv_city_image)),
+                35.54, 139.61, 35.82, 139.92)
         myRequest.execute()
         val button = findViewById<Button>(R.id.btn_get_image)
         button.setOnClickListener {
@@ -56,21 +56,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
 
     private val handleTouch: View.OnTouchListener = object : View.OnTouchListener {
         override fun onTouch(v: View?, event: MotionEvent): Boolean {
-            val x = event.x.toInt()
-            val y = event.y.toInt()
 
-            val screenX = event.rawX
-            val screenY = event.rawY
-            val viewX1 = screenX - 377
-            val viewY1 = screenY - 249
-
-            val view = findViewById<View>(R.id.iv_city_image)
-
-
-            var y1 = 35.82
-            var x1 = 139.61
-            var x2 = 139.92
-            var y2 = 35.54
+            val y1 = 35.82
+            val x1 = 139.61
+            val x2 = 139.92
+            val y2 = 35.54
 
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -80,7 +70,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
                     finalY1 = (y1 - y2) * ((363 - 43) - rawY) / (363 - 43) + y2
 
                 }
-
 
                 MotionEvent.ACTION_UP -> {
                     val rawX = event.x.toInt() - 377
