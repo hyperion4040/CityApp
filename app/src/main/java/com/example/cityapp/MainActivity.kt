@@ -1,13 +1,12 @@
 package com.example.cityapp
 
-import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
@@ -16,7 +15,10 @@ import java.lang.ref.WeakReference
 
 class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
 
-
+   private var finalX1 = 0.0
+   private var finalY1 = 0.0
+   private var finalY2 = 0.0
+   private var finalX2 = 0.0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,16 +71,13 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
             var x1 = 139.61
             var x2 = 139.92
             var y2 = 35.54
-            var finalX1 = 0.0
-            var finalY1 = 0.0
-            var finalY2 = 0.0
-            var finalX2 = 0.0
+
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    val rawX = event.x.toInt() - 379
+                    val rawX = event.x.toInt() - 377
                     val rawY = event.y.toInt() - 41
-                    finalX1 = (x2- x1) * rawX / (701-379) + x1
-                    finalY1 = (y1-y2) * rawY / (363-43) + y2
+                    finalX1 = (x2 - x1) * rawX / (701 - 379) + x1
+                    finalY1 = (y1 - y2) * ((363 - 43) - rawY) / (363 - 43) + y2
 
                 }
 
@@ -86,9 +85,10 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
                 MotionEvent.ACTION_UP -> {
                     val rawX = event.x.toInt() - 377
                     val rawY = event.y.toInt() - 41
-                    finalX2 = (x2- x1) * rawX / (701-379) + x1
-                    finalY2 = (y1-y2) * rawY / (363-43) + y2
+                    finalX2 = (x2 - x1) * rawX / (701 - 379) + x1
+                    finalY2 = (y1 - y2) * ((363 - 43) - rawY) / (363 - 43) + y2
 
+                    Log.i("Cooridnate", "y1 = $finalY1, x1 = $finalX1, y2 = $finalY2, x2 = $finalX2")
                     myAsyncTask(WeakReference(findViewById(R.id.iv_city_image)), WeakReference(findViewById(R.id.iv_city_minimap)),
                             finalY1, finalX1, finalY2, finalX2).execute()
                 }
