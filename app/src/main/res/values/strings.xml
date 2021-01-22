@@ -5,4 +5,8 @@
     <string name="y1Coordinate">35.82</string>
     <string name="x2Coordinate">139.92</string>
     <string name="y2Coordinate">35.54</string>
+    <string name="x1CoordinateTitle">longitude min = 139.61</string>
+    <string name="y1CoordinateTitle">latitude max = 35.82</string>
+    <string name="x2CoordinateTitle">longitude max = 139.92</string>
+    <string name="y2CoordinateTitle">latitude min = 35.54</string>
 </resources>
