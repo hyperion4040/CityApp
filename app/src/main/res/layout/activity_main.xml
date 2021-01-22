@@ -10,22 +10,24 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/iv_city_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/app_name"
-        android:layout_weight="1"
-        android:layout_gravity="left"
-        android:paddingTop="15dp"/>
-
-    <ImageView
         android:id="@+id/iv_city_minimap"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="match_parent"
         android:contentDescription="@string/app_name"
-        android:layout_gravity="left"
+        android:layout_gravity="center_vertical"
         android:paddingTop="15dp" />
+
+    <ImageView
+        android:id="@+id/iv_city_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:paddingTop="15dp"/>
+
+
 
 
     <!--ImageView

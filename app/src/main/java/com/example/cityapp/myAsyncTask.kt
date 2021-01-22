@@ -39,7 +39,7 @@ class myAsyncTask(val imageView: WeakReference<ImageView>, val minimapView: Weak
         val envelope = SoapSerializationEnvelope(SoapEnvelope.VER11)
         envelope.implicitTypes = true
         envelope.setOutputSoapObject(request)
-        MarshalFloat().register(envelope)
+        MarshalFloat().register(envelope) // mportant
         val httpTransport = HttpTransportSE(URL)
         httpTransport.debug = true
         try {
