@@ -84,7 +84,7 @@ class myAsyncTask(val imageView: WeakReference<ImageView>, val minimapView: Weak
         val minimapData: ByteArray = maps[1] as ByteArray
         val bmpMinimap = BitmapFactory.decodeByteArray(minimapData, 0, minimapData.size)
         imageView.get()?.setImageBitmap(Bitmap.createScaledBitmap(bmpMinimap,150,150,true))
-        minimapView.get()?.setImageBitmap(bmp)
+        minimapView.get()?.setImageBitmap(Bitmap.createScaledBitmap(bmp,150,150,true))
 
     }
 

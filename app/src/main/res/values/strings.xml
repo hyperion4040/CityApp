@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">CityApp</string>
     <string name="get_city_map">Get City Map</string>
+    <string name="x1Coordinate">139.61</string>
+    <string name="y1Coordinate">35.82</string>
+    <string name="x2Coordinate">139.92</string>
+    <string name="y2Coordinate">35.54</string>
 </resources>
